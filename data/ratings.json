@@ -859,5 +859,19 @@
     "ratingValue": 3,
     "userId": "user-021",
     "timestamp": "2024-02-24T10:00:00.000Z"
+  },
+  {
+    "id": "aabe54f5-eba1-46b2-85c0-2729213bf369",
+    "resourceId": "res-06c39f21-7290-4c74-9040-277501a30002",
+    "ratingValue": 4,
+    "userId": "anonymous",
+    "timestamp": "2025-08-29T10:44:01.722Z"
+  },
+  {
+    "id": "51535028-d68e-431f-9684-934d833d92ec",
+    "resourceId": "res-06c39f21-7290-4c74-9040-277501a30002",
+    "ratingValue": 1,
+    "userId": "anonymous",
+    "timestamp": "2025-08-29T10:44:44.784Z"
   }
 ]

@@ -1,0 +1,37 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    # Für lokale Tools (z. B. mongosh):
+    ports:
+      - "27017:27017"
+
+  api:
+    build: .
+    ports:
+      - "5002:5002"
+    environment:
+      - PORT=5002
+      - MONGO_URI=mongodb://mongo:27017
+      - MONGO_DB=resource_catalog
+    depends_on:
+      - mongo
+
+  # Optional: Web-UI zum Reinschauen
+  mongo_express:
+    image: mongo-express:1
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017
+    depends_on:
+      - mongo
+
+volumes:
+  mongo_data:
+
+
+
