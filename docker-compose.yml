@@ -1,37 +1,21 @@
 services:
-  mongo:
-    image: mongo:7
-    restart: unless-stopped
-    volumes:
-      - mongo_data:/data/db
-    # Für lokale Tools (z. B. mongosh):
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
     ports:
       - "27017:27017"
-
-  api:
-    build: .
-    ports:
-      - "5002:5002"
-    environment:
-      - PORT=5002
-      - MONGO_URI=mongodb://mongo:27017
-      - MONGO_DB=resource_catalog
-    depends_on:
-      - mongo
-
-  # Optional: Web-UI zum Reinschauen
+    volumes:
+      - mongodb_data:/data/db
+  
   mongo_express:
-    image: mongo-express:1
-    restart: unless-stopped
+    image: mongo-express:latest
+    container_name: mongo_express
     ports:
       - "8081:8081"
     environment:
-      - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017
+      - ME_CONFIG_MONGODB_URL=mongodb://mongodb:27017
     depends_on:
-      - mongo
+      - mongodb
 
 volumes:
-  mongo_data:
-
-
-
+  mongodb_data:
